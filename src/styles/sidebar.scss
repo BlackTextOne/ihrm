@@ -5,9 +5,11 @@
     transition: margin-left .28s;
     margin-left: $sideBarWidth;
     position: relative;
+    background-color: #fff;
   }
 
   .sidebar-container {
+    border-radius: 0 15px 15px 0;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
@@ -75,7 +77,9 @@
         background-color: $menuHover !important;
       }
     }
-
+    .is-active {
+      background-color: $menuBgActive !important;
+    }
     .is-active>.el-submenu__title {
       color: $subMenuActiveText !important;
     }
