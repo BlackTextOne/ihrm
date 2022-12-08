@@ -131,13 +131,7 @@
               placeholder="请选择"
               style="width: 300px"
             >
-              <el-option label="总裁办" :value="'总裁办'"></el-option>
-              <el-option label="市场部" :value="'市场部'"></el-option>
-              <el-option label="财务部" :value="'财务部'"></el-option>
-              <el-option label="人事部" :value="'人事部'"></el-option>
-              <el-option label="技术部" :value="'技术部'"></el-option>
-              <el-option label="运营部" :value="'运营部'"></el-option>
-              <el-option label="行政部" :value="'行政部'"></el-option>
+              <el-option v-for="item in list" :key="item.id" :label="item" :value="item"></el-option>
             </el-select>
           </el-form-item>
 
@@ -252,7 +246,7 @@
 </template>
 
 <script>
-import { getUser, addUser, removeUser } from "@/api/employees";
+import { getUser, addUser, removeUser, getBm, } from "@/api/employees";
 
 export default {
   data() {
@@ -311,6 +305,7 @@ export default {
     };
 
     return {
+      list:[],
       i: 0,
       total: null,
       page: 1,
@@ -392,10 +387,17 @@ export default {
       this.tableData = res.rows;
     },
     async currentPage(newPage) {
-      //点击次页码
+      //点击此页码
       this.page = newPage;
       const res = await getUser({ page: this.page, size: 10 });
       this.tableData = res.rows;
+      console.log(this.tableData);
+      /* if(this.tableData.length%10!==0) {
+        var s = 10-this.tableData.length
+        for(var i=0;i<s;i++) {
+          this.tableData.push({})
+        }
+      } */
     },
     async handleClick(row) {
       console.log(row.id);
@@ -438,6 +440,12 @@ export default {
     console.log(res);
     this.total = res.total;
     this.tableData = res.rows;
+    const res1 = await getBm()
+    // console.log(res1.depts);
+    for(let i=0;i<res1.depts.length;i++) {
+      this.list.push(res1.depts[i].name)
+    }
+    console.log(this.list);
   },
 };
 </script>

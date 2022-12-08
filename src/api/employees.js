@@ -22,3 +22,10 @@ export function removeUser(id) {
         url:`/sys/user/${id}`,
     })
 }
+
+export function getBm() {
+    return request({
+        method:'GET',
+        url:'/company/department',
+    })
+}

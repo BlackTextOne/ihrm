@@ -16,6 +16,7 @@ export const constantRoutes = [
   {
     path: '/404',
     component: () => import('@/views/404'),
+    // component: () => import('@/views/permissions/index'),
     hidden: true
   },
 
@@ -69,7 +70,34 @@ export const constantRoutes = [
       meta: { title: '考勤', icon: 'table' }
     }]
   },
-
+  {
+    path: '/permissions',
+    component: Layout,
+    children: [{
+      path: '',
+      name: 'Permissions',
+      component: () => import('@/views/permissions/index'),
+      meta: { title: '公司权限', icon: 'tree' }
+    }]
+  },
+  {
+    path:'/moneySet',
+    component: Layout,
+    children:[{
+      path:'',
+      name:'MoneySet',
+      component:()=>import('@/views/moneySet/index'),
+    }]
+  },
+  {
+    path:'/setting',
+    component: Layout,
+    children:[{
+      path:'',
+      name:'Setting',
+      component:()=>import('@/views/setting/index'),
+    }]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
