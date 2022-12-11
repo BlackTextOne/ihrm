@@ -15,10 +15,14 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import JsonExcel from 'vue-json-excel' //导出excel
+Vue.component('downloadExcel',JsonExcel)
+
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
 }
+
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })

@@ -142,13 +142,13 @@ export default {
     },
   },
   async created() {
-    // console.log(this.$route.query.userId);
+    // console.log(this.$route.params.userId);
     const res = await getUserMoneySet(); //获取津贴设置
     this.moneySet = res;
-    console.log(this.moneySet);
-    const res1 = await getUserMoney(this.$route.query.userId); //查询用户薪资
+    // console.log(this.moneySet);
+    const res1 = await getUserMoney(this.$route.params.userId); //查询用户薪资
     this.userMoney = res1;
-    console.log(this.userMoney);
+    // console.log(this.userMoney);
   },
 };
 </script>

@@ -6,6 +6,7 @@
       @toggleClick="toggleSideBar"
     />
     <p class="username">{{ userInfo.username }}</p>
+    
     <!-- <breadcrumb class="breadcrumb-container" /> -->
     <div class="navbar-title">欢迎光临iHRM后台登陆系统</div>
 

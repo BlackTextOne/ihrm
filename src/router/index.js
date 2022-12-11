@@ -98,6 +98,15 @@ export const constantRoutes = [
       component:()=>import('@/views/setting/index'),
     }]
   },
+  {
+    path:'/report',
+    component:Layout,
+    children:[{
+      path:'',
+      name:'Report',
+      component:()=>import('@/views/report/index')
+    }]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

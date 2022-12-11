@@ -111,9 +111,9 @@
                   : "定薪"
               }}
             </el-button>
-            <el-button type="text" size="small" @click="handleClick(scope.row)"
-              >查看</el-button
-            >
+            <el-button type="text" size="small" @click="handleClick(scope.row)">
+              查看
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -294,6 +294,7 @@ export default {
         zzJbMoney: null, //转正基本工资
         zzGwMoney: null, //转正岗位工资
       },
+      userId:null
     };
   },
   computed: {
@@ -454,11 +455,11 @@ export default {
       }
       this.dialogVisible1 = false;
     },
-    //查询用户薪资
-    async handleClick(row) {
+    //查询用户薪资，传递用户id
+    handleClick(row) {
       this.$router.push({
-        path:'/moneySet',
-        query:{
+        name:'MoneySet',
+        params:{
           userId:row.id
         }
       })
