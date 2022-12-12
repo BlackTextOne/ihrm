@@ -18,6 +18,12 @@ import '@/permission' // permission control
 import JsonExcel from 'vue-json-excel' //导出excel
 Vue.component('downloadExcel',JsonExcel)
 
+import i18n from '@/lang'
+
+Vue.use(ElementUI,{
+  i18n:(key,value)=>i18n.t(key,value)
+})
+
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
@@ -25,14 +31,15 @@ if (process.env.NODE_ENV === 'production') {
 
 
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+// Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
+  i18n,
   router,
   store,
   render: h => h(App)

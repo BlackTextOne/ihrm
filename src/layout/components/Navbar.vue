@@ -5,7 +5,7 @@
       class="hamburger-container"
       @toggleClick="toggleSideBar"
     />
-    <p class="username">{{ userInfo.username }}</p>
+    
     
     <!-- <breadcrumb class="breadcrumb-container" /> -->
     <div class="navbar-title">欢迎光临iHRM后台登陆系统</div>
@@ -38,6 +38,17 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <p class="username">{{ userInfo.username }}</p>
+    <div class="function" style="float:right;height:50px;line-height:50px;margin-right:20px">
+      <div class="screen" title="全屏" style="float:left;width:50px;text-align:center;cursor: pointer;" @click="scre">
+        <i class="el-icon-rank" style="font-size:14px;"></i>
+      </div>
+      <!-- <div class="color" style="float:left;width:50px;text-align:center;cursor: pointer;">
+        <i class="el-icon-brush"></i>
+      </div> -->
+      <Skin style="float:left;width:50px;height:50px;text-align:center;margin-top:16px;"/>
+      <Lang />
+    </div>
   </div>
 </template>
 
@@ -46,21 +57,36 @@ import { mapGetters } from "vuex";
 import Breadcrumb from "@/components/Breadcrumb";
 import Hamburger from "@/components/Hamburger";
 import { getuserinfo, removeuserinfo } from "@/utils/session";
-
+import Lang from '@/components/lang'
+import Skin from '@/components/skin'
 export default {
   data() {
     return {
       userInfo: getuserinfo(),
+      scr:false
     };
   },
   components: {
     Breadcrumb,
     Hamburger,
+    Lang,
+    Skin
   },
   computed: {
     ...mapGetters(["sidebar", "avatar"]),
   },
   methods: {
+    scre() {
+      if(this.scr==false) {
+        this.scr = true;
+        document.documentElement.requestFullscreen() //全屏
+      }
+      if(this.scr==true) {
+        this.scr = false;
+        document.exitFullscreen() //退出全屏
+      }
+      
+    },
     toggleSideBar() {
       this.$store.dispatch("app/toggleSideBar");
     },
@@ -82,12 +108,22 @@ export default {
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   .username {
-    position: absolute;
+    /* position: absolute;
     top: 3px;
-    right: 90px;
+    right: 90px; */
+    float: right;
     height: 100%;
     line-height: 50px;
-    margin: 0;
+    margin: 0 20px 0 0;
+  }
+  .function {
+    .lang-container {
+      width: 50px;
+      height: 50px;
+      float: left;
+      text-align: center;
+      cursor: pointer;
+    }
   }
   .navbar-title {
     display: flex;

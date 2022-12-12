@@ -20,15 +20,7 @@
         <div class="el-from-content">
           <div class="title-container">
             <h3 class="title">手机号登录</h3>
-            <el-dropdown class="el-dropdown1">
-              <span class="el-dropdown-link">
-                切换语言<i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>中文</el-dropdown-item>
-                <el-dropdown-item>English</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+            <Lang />
           </div>
 
           <el-form-item prop="mobile">
@@ -91,7 +83,11 @@
 <script>
 import { validMobile } from "@/utils/validate";
 import { mapActions } from "vuex";
+import Lang from "@/components/lang";
 export default {
+  components: {
+    Lang,
+  },
   name: "Login",
   data() {
     const validateMobile = (rule, value, callback) => {
@@ -319,17 +315,19 @@ $light_gray: #c1c1c1;
 
   .title-container {
     position: relative;
-    .el-dropdown1 {
+    .lang-container {
       position: absolute;
-      right: 2px;
+      right: 25px;
       top: 3px;
-    }
-    .el-dropdown-link {
-      cursor: pointer;
-      color: #409eff;
-    }
-    .el-icon-arrow-down {
-      font-size: 12px;
+      .el-dropdown1 {
+      }
+      .el-dropdown-link {
+        cursor: pointer;
+        color: #409eff;
+      }
+      .el-icon-arrow-down {
+        font-size: 12px;
+      }
     }
 
     .title {
